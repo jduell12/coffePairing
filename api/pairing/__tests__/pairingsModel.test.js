@@ -1,5 +1,5 @@
-const db = require("../../db/dbConfig");
-const Pairings = require("./pairingsModel");
+const db = require("../../../db/dbConfig");
+const Pairings = require("../pairingsModel");
 const TABLE_NAME = "pairings";
 
 //async forEach method
