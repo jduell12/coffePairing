@@ -26,5 +26,5 @@ function deleteDepartment(department_id) {
 }
 
 function getDepartmentById(department_id) {
-  return db(TABLE_NAME).where({ department_id });
+  return db(TABLE_NAME).select("department").where({ department_id }).first();
 }

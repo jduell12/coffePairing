@@ -1,5 +1,5 @@
-const db = require("../../db/dbConfig");
-const Departments = require("./departmentsModel");
+const db = require("../../../db/dbConfig");
+const Departments = require("../departmentsModel");
 const TABLE_NAME = "departments";
 
 //async forEach method
