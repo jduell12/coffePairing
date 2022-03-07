@@ -10,7 +10,7 @@ module.exports = {
 };
 
 function addPairing(info) {
-  return db(TABLE_NAME).insert(info);
+  return db(TABLE_NAME).insert(info, "pair_id");
 }
 
 function editPairing(pair_id, pairEdits) {

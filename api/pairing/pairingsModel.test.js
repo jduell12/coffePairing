@@ -36,8 +36,9 @@ describe("pairingsModel", () => {
       let test_list = getTestPairings();
       let expected_list = getExpectedPairings();
 
-      await Pairings.addPairing(test_list[0]);
-      let db_list = await db(TABLE_NAME);
+      const pairing = await Pairings.addPairing(test_list[0]);
+      const db_list = await db(TABLE_NAME);
+      expect(pairing).toEqual([{ pair_id: 1 }]);
       expect(db_list).toEqual([expected_list[0]]);
     });
 
@@ -50,8 +51,9 @@ describe("pairingsModel", () => {
         await db(TABLE_NAME).insert(pair);
       });
 
-      await Pairings.addPairing(test_list[2]);
+      const pairing = await Pairings.addPairing(test_list[2]);
       let db_list = await db(TABLE_NAME);
+      expect(pairing).toEqual([{ pair_id: 3 }]);
       expect(db_list.length).toEqual(3);
       expect(db_list).toEqual(expected_list);
     });
