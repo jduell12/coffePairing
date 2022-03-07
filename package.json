@@ -1,0 +1,11 @@
+{
+  "name": "coffeepairing",
+  "version": "1.0.0",
+  "description": "API to keep track of coffee pairing amongst co-workers for a monthly meetup",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env DB_ENV=testing jest --watch --runInBand"
+  },
+  "author": "Jessica Duell",
+  "license": "ISC"
+}
