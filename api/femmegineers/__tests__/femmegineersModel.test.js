@@ -1,5 +1,5 @@
-const db = require("../../db/dbConfig");
-const Femme = require("./femmegineersModel");
+const db = require("../../../db/dbConfig");
+const Femme = require("../femmegineersModel");
 
 const TABLE_NAME = "femmegineers";
 
