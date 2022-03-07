@@ -29,9 +29,8 @@ function getTestFemme() {
 
 function getTestPairings() {
   return [
-    { year: 2021, month: "March", pair1: 1, pair2: 8 },
-    { year: 2021, month: "March", pair1: 2, pair2: 12 },
-    { year: 2021, month: "March", pair1: 3, pair2: 5 },
+    { year: 2021, month: "March", pair1: 1, pair2: 2 },
+    { year: 2021, month: "March", pair1: 4, pair2: 5 },
   ];
 }
 
@@ -59,11 +58,14 @@ describe("pairingsRouter", () => {
   });
 
   describe("POST /", () => {
-    it.only("returns 200 OK", async () => {
-      const res = await supertest(server)
-        .post("/pairing")
-        .send({ month: "April", year: 2022 });
+    it("returns 200 OK", async () => {
+      const res = await supertest(server).post("/pairing/April/2021");
       expect(res.statusCode).toBe(200);
+    });
+
+    it("returns new pairings", async () => {
+      const res = await supertest(server).post("/pairing/April/2021");
+      expect(res.body.pairs).toHaveLength(2);
     });
   });
 });
