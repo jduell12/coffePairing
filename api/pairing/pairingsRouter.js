@@ -51,6 +51,20 @@ router.post("/:month/:year", async (req, res) => {
   res.status(200).json({ pairs });
 });
 
+router.get("/:month/:year", (req, res) => {
+  let { month, year } = req.params;
+  Pairings.getPairingBy("month+year", [month, year])
+    .then((pairings) => {
+      res.status(200).json(pairings);
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .json({ error: err.message, message: "Can not retrieve pairings" });
+    });
+});
+
 module.exports = router;
 
 function checkInArr(item, array) {

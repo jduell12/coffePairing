@@ -171,5 +171,15 @@ describe("pairingsModel", () => {
       list = await Pairings.getPairingBy("pair2", 20);
       expect(list).toEqual([]);
     });
+
+    it("gets pairing by month and year", async () => {
+      let list = await Pairings.getPairingBy("month+year", ["March", 2021]);
+      const expected_list = getExpectedPairings();
+
+      expect(list).toEqual(expected_list);
+
+      list = await Pairings.getPairingBy("month+year", ["March", 2022]);
+      expect(list).toEqual([]);
+    });
   });
 });

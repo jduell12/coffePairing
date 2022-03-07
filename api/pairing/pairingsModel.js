@@ -29,6 +29,11 @@ function getPairingBy(filterName, filterValue) {
   switch (filterName) {
     case "pair_id":
       return db(TABLE_NAME).where({ pair_id: filterValue });
+    case "month+year":
+      return db(TABLE_NAME).where({
+        year: filterValue[1],
+        month: filterValue[0],
+      });
     case "year":
       return db(TABLE_NAME).where({ year: filterValue });
     case "month":
