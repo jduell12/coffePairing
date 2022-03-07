@@ -4,11 +4,17 @@
   "description": "API to keep track of coffee pairing amongst co-workers for a monthly meetup",
   "main": "index.js",
   "scripts": {
+    "migrate": "knex migrate:latest --env=development",
+    "migrate:test": "knex migrate:latest --env=testing",
+    "seed": "knex seed:run --env=development",
+    "seed:test": "knex seed:run --env=testing",
+    "start": "nodemon index.js",
     "test": "cross-env DB_ENV=testing jest --watch --runInBand"
   },
   "author": "Jessica Duell",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "knex": "^1.0.3",
