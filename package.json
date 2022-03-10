@@ -8,7 +8,8 @@
     "migrate:test": "knex migrate:latest --env=testing",
     "seed": "knex seed:run --env=development",
     "seed:test": "knex seed:run --env=testing",
-    "start": "nodemon index.js",
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
     "test": "cross-env DB_ENV=testing jest --watch --runInBand"
   },
   "author": "Jessica Duell",
