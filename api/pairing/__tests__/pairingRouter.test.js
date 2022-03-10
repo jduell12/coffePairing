@@ -57,7 +57,7 @@ describe("pairingsRouter", () => {
     });
   });
 
-  describe("POST /", () => {
+  describe("POST /:month:year", () => {
     it("returns 200 OK", async () => {
       const res = await supertest(server).post("/pairing/April/2021");
       expect(res.statusCode).toBe(200);

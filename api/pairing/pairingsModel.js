@@ -30,10 +30,12 @@ function getPairingBy(filterName, filterValue) {
     case "pair_id":
       return db(TABLE_NAME).where({ pair_id: filterValue });
     case "month+year":
-      return db(TABLE_NAME).where({
-        year: filterValue[1],
-        month: filterValue[0],
-      });
+      return db("pairings as p").join("femmegineers as f", function(){
+        this.on('p.pair1', '=', 'f.femme_id').orOn('p.pair2', '=', 'f.femme_id')
+      }).where({
+        "p.year": filterValue[1],
+        "p.month": filterValue[0],
+      }).select('p.pair_id', 'p.year', 'p.month', 'f.femme_id', ).orderBy("p.pair_id");
     case "year":
       return db(TABLE_NAME).where({ year: filterValue });
     case "month":
