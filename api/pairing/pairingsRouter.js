@@ -51,10 +51,16 @@ router.post("/:month/:year", async (req, res) => {
   res.status(200).json({ pairs });
 });
 
-router.get("/:month/:year", (req, res) => {
+router.get("/:month/:year", async (req, res) => {
   let { month, year } = req.params;
   Pairings.getPairingBy("month+year", [month, year])
     .then((pairings) => {
+      await pairings.forEach(pairing => {
+        const femme1 = Femme.getFemmeBy('id', pairing.pair1)
+        const femme2 = Femme.getFemmeBy("id", pairing.pair2);
+        pairing.pair1 = femme1
+        pairing.pair2 = femme2
+      })
       res.status(200).json(pairings);
     })
     .catch((err) => {
