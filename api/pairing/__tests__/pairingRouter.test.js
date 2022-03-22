@@ -77,10 +77,40 @@ describe("pairingsRouter", () => {
 
     it("returns new pairings", async () => {
       const res = await supertest(server).get("/pairing/March/2021");
-      expect(res.body).toEqual([
-        { pair_id: 1, year: 2021, month: "March", pair1: 1, pair2: 2 },
-        { pair_id: 2, year: 2021, month: "March", pair1: 4, pair2: 5 },
-      ]);
+      expect(res.body).toEqual({
+        month: "March",
+        year: "2021",
+        pairs: [
+          {
+            pair1: {
+              femme_id: 1,
+              initials: "jd",
+              active: true,
+              department_id: 1,
+            },
+            pair2: {
+              femme_id: 2,
+              initials: "mmw",
+              active: true,
+              department_id: 2,
+            },
+          },
+          {
+            pair1: {
+              femme_id: 4,
+              initials: "ds",
+              active: true,
+              department_id: 3,
+            },
+            pair2: {
+              femme_id: 5,
+              initials: "wc",
+              active: true,
+              department_id: 2,
+            },
+          },
+        ],
+      });
     });
   });
 });

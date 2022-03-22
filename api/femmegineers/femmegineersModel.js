@@ -37,6 +37,6 @@ async function getFemmeBy(filterName, filterValue) {
     case "initials":
       return db(TABLE_NAME).where({ initials: filterValue });
     default:
-      return False;
+      return false;
   }
 }
