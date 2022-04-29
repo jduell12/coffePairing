@@ -68,7 +68,7 @@ router.post("/:month/:year", async (req, res) => {
   }
 
   //check that pairs have not been together in the year
-  res.status(200).json({ month: month, year: year, extra: extra_femme, pairs: pairings_to_send });
+  res.status(200).json({ month: month, year: year, extra: extra_femme, number_pairs: pairings_to_send.length, pairs: pairings_to_send });
 });
 
 //get the pairings for a given month and year
@@ -87,9 +87,8 @@ router.get("/:month/:year", async (req, res) => {
       
       pairings_to_send.push({pair1: femme1[0], pair2: femme2[0]})
     }
-    res.status(200).json({month: month, year: year, pairs: pairings_to_send})
+    res.status(200).json({month: month, year: year, number_pairs: pairings_to_send.length, pairs: pairings_to_send})
   }catch(err){
-    console.log(err);
     res
       .status(500)
       .json({ error: err.message, message: "Can not retrieve pairings" });

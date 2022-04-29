@@ -5,19 +5,19 @@ const TABLE_NAME = "femmegineers";
 
 function getTestFemme() {
   return [
-    { initials: "jd", department_id: 1, active: true },
-    { initials: "mmw", department_id: 2, active: true },
-    { initials: "as", department_id: 1, active: true },
-    { initials: "asd", department_id: 2, active: false },
+    { name: "jd", department_id: 1, active: true },
+    { name: "mmw", department_id: 2, active: true },
+    { name: "as", department_id: 1, active: true },
+    { name: "asd", department_id: 2, active: false },
   ];
 }
 
 function getDBFemme() {
   return [
-    { femme_id: 1, initials: "jd", department_id: 1, active: true },
-    { femme_id: 2, initials: "mmw", department_id: 2, active: true },
-    { femme_id: 3, initials: "as", department_id: 1, active: true },
-    { femme_id: 4, initials: "asd", department_id: 2, active: false },
+    { femme_id: 1, name: "jd", department_id: 1, active: true },
+    { femme_id: 2, name: "mmw", department_id: 2, active: true },
+    { femme_id: 3, name: "as", department_id: 1, active: true },
+    { femme_id: 4, name: "asd", department_id: 2, active: false },
   ];
 }
 
@@ -79,7 +79,7 @@ describe("femmeRouter", () => {
 
       res = await supertest(server)
         .post("/femme")
-        .send({ department_id: 1, initials: "zzz" });
+        .send({ department_id: 1, name: "zzz" });
       expect(res.statusCode).toBe(201);
     });
 
@@ -98,13 +98,13 @@ describe("femmeRouter", () => {
 
       res = await supertest(server)
         .post("/femme")
-        .send({ department_id: "1", initials: 1 });
+        .send({ department_id: "1", name: 1 });
       expect(res.statusCode).toBe(400);
 
       res = await supertest(server).post("/femme").send({ department_id: 1 });
       expect(res.statusCode).toBe(400);
 
-      res = await supertest(server).post("/femme").send({ initials: "jd" });
+      res = await supertest(server).post("/femme").send({ name: "jd" });
       expect(res.statusCode).toBe(400);
     });
 
@@ -115,13 +115,13 @@ describe("femmeRouter", () => {
 
       res = await supertest(server)
         .post("/femme")
-        .send({ department_id: "1", initials: 1 });
+        .send({ department_id: "1", name: 1 });
       expect(res.body).toEqual({ message: "Wrong femme format" });
 
       res = await supertest(server).post("/femme").send({ department_id: 1 });
       expect(res.body).toEqual({ message: "Wrong femme format" });
 
-      res = await supertest(server).post("/femme").send({ initials: "jd" });
+      res = await supertest(server).post("/femme").send({ name: "jd" });
       expect(res.body).toEqual({ message: "Wrong femme format" });
     });
   });

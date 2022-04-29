@@ -36,7 +36,7 @@ describe("departmentsModel", () => {
       const list = getTestDepartments();
       const expected_list = getExpectedDepartments();
 
-      const department = await Departments.addDepartment(list[0]);
+      const department = await Departments.addDepartment(list[0].department);
       const db_department = await db(TABLE_NAME);
       expect(department).toEqual([{ department_id: 1 }]);
       expect(db_department).toEqual([expected_list[0]]);
@@ -50,7 +50,7 @@ describe("departmentsModel", () => {
         await db(TABLE_NAME).insert(department);
       });
 
-      const department = await Departments.addDepartment(list[2]);
+      const department = await Departments.addDepartment(list[2].department);
       const db_department = await db(TABLE_NAME);
       expect(department).toEqual([{ department_id: 3 }]);
       expect(db_department).toEqual(expected_list);
@@ -127,11 +127,10 @@ describe("departmentsModel", () => {
     it("gets department by id", async () => {
       const expected_list = getExpectedDepartments();
       let department = await Departments.getDepartmentById(1);
-
-      expect(department[0]).toEqual(expected_list[0]);
+      expect(department).toEqual(expected_list[0]);
 
       department = await Departments.getDepartmentById(10);
-      expect(department).toEqual([]);
+      expect(department).toEqual(undefined);
     });
   });
 });

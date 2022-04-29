@@ -5,19 +5,19 @@ const TABLE_NAME = "femmegineers";
 
 function getTestFemme() {
   return [
-    { initials: "jd", department_id: 1, active: true },
-    { initials: "mmw", department_id: 2, active: true },
-    { initials: "as", department_id: 1, active: true },
-    { initials: "asd", department_id: 2, active: false },
+    { name: "jd", department_id: 1, active: true },
+    { name: "mmw", department_id: 2, active: true },
+    { name: "as", department_id: 1, active: true },
+    { name: "asd", department_id: 2, active: false },
   ];
 }
 
 function getDBFemme() {
   return [
-    { femme_id: 1, initials: "jd", department_id: 1, active: true },
-    { femme_id: 2, initials: "mmw", department_id: 2, active: true },
-    { femme_id: 3, initials: "as", department_id: 1, active: true },
-    { femme_id: 4, initials: "asd", department_id: 2, active: false },
+    { femme_id: 1, name: "jd", department_id: 1, active: true },
+    { femme_id: 2, name: "mmw", department_id: 2, active: true },
+    { femme_id: 3, name: "as", department_id: 1, active: true },
+    { femme_id: 4, name: "asd", department_id: 2, active: false },
   ];
 }
 
@@ -170,16 +170,16 @@ describe("femmegineersModel", () => {
       expect(femme).toEqual([]);
     });
 
-    it("gets a femme by initials", async () => {
+    it("gets a femme by name", async () => {
       const db_femme = getDBFemme();
 
-      let femme = await Femme.getFemmeBy("initials", "jd");
+      let femme = await Femme.getFemmeBy("name", "jd");
       expect(femme).toEqual([db_femme[0]]);
 
-      femme = await Femme.getFemmeBy("initials", "mmw");
+      femme = await Femme.getFemmeBy("name", "mmw");
       expect(femme).toEqual([db_femme[1]]);
 
-      femme = await Femme.getFemmeBy("initials", "jds");
+      femme = await Femme.getFemmeBy("name", "jds");
       expect(femme).toEqual([]);
     });
   });

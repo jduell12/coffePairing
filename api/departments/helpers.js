@@ -7,7 +7,7 @@ module.exports = {
 
 function departmentValid(department) {
   return Boolean(
-    department.department && typeof department.department === "string",
+    typeof department === "string",
   );
 }
 

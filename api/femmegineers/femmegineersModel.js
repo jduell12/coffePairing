@@ -13,6 +13,7 @@ function addFemme(info) {
   return db(TABLE_NAME).insert(info, "femme_id");
 }
 
+
 function editFemme(femme_id, femme_edits) {
   return db(TABLE_NAME).where({ femme_id }).update(femme_edits);
 }
@@ -34,8 +35,8 @@ async function getFemmeBy(filterName, filterValue) {
       return db(TABLE_NAME).where({ active: filterValue });
     case "department_id":
       return db(TABLE_NAME).where({ department_id: filterValue });
-    case "initials":
-      return db(TABLE_NAME).where({ initials: filterValue });
+    case "name":
+      return db(TABLE_NAME).where({ name: filterValue });
     default:
       return false;
   }

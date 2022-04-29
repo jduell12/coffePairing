@@ -9,8 +9,8 @@ module.exports = {
   getDepartmentById,
 };
 
-function addDepartment(info) {
-  return db(TABLE_NAME).insert(info, "department_id");
+function addDepartment(department) {
+  return db(TABLE_NAME).insert({department}, "department_id");
 }
 
 function editDepartment(department_id, edits) {
@@ -26,5 +26,5 @@ function deleteDepartment(department_id) {
 }
 
 function getDepartmentById(department_id) {
-  return db(TABLE_NAME).select("department").where({ department_id }).first();
+  return db(TABLE_NAME).select("*").where({ department_id }).first();
 }

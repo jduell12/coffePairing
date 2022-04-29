@@ -50,7 +50,7 @@ describe("departmentsRouter", () => {
 
     it("returns 200 success message", async () => {
       let res = await supertest(server).get("/departments/1");
-      expect(res.body).toEqual({ department: "engineering" });
+      expect(res.body).toEqual({ department: "engineering", department_id: 1 });
 
       res = await supertest(server).get("/departments/10");
       expect(res.body).toEqual("");
@@ -84,13 +84,12 @@ describe("departmentsRouter", () => {
       const list = getTestDepartments();
       let res = await supertest(server)
         .post("/departments")
-        .send({ department: list[0] });
-
+        .send({ department: list[0].department });
       expect(res.statusCode).toBe(201);
 
       res = await supertest(server)
         .post("/departments")
-        .send({ department: list[1] });
+        .send({ department: list[1].department });
 
       expect(res.statusCode).toBe(201);
     });
@@ -99,13 +98,13 @@ describe("departmentsRouter", () => {
       const list = getTestDepartments();
       let res = await supertest(server)
         .post("/departments")
-        .send({ department: list[0] });
+        .send({ department: list[0].department });
 
       expect(res.body).toEqual({ department_id: 1 });
 
       res = await supertest(server)
         .post("/departments")
-        .send({ department: list[1] });
+        .send({ department: list[1].department });
 
       expect(res.body).toEqual({ department_id: 2 });
     });

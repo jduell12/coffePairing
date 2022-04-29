@@ -19,11 +19,11 @@ function getTestDepartments() {
 
 function getTestFemme() {
   return [
-    { initials: "jd", department_id: 1, active: true },
-    { initials: "mmw", department_id: 2, active: true },
-    { initials: "asd", department_id: 2, active: false },
-    { initials: "ds", department_id: 3, active: true },
-    { initials: "wc", department_id: 2, active: true },
+    { name: "jd", department_id: 1, active: true },
+    { name: "mmw", department_id: 2, active: true },
+    { name: "asd", department_id: 2, active: false },
+    { name: "ds", department_id: 3, active: true },
+    { name: "wc", department_id: 2, active: true },
   ];
 }
 
@@ -80,17 +80,18 @@ describe("pairingsRouter", () => {
       expect(res.body).toEqual({
         month: "March",
         year: "2021",
+        number_pairs: 2,
         pairs: [
           {
             pair1: {
               femme_id: 1,
-              initials: "jd",
+              name: "jd",
               active: true,
               department_id: 1,
             },
             pair2: {
               femme_id: 2,
-              initials: "mmw",
+              name: "mmw",
               active: true,
               department_id: 2,
             },
@@ -98,13 +99,13 @@ describe("pairingsRouter", () => {
           {
             pair1: {
               femme_id: 4,
-              initials: "ds",
+              name: "ds",
               active: true,
               department_id: 3,
             },
             pair2: {
               femme_id: 5,
-              initials: "wc",
+              name: "wc",
               active: true,
               department_id: 2,
             },

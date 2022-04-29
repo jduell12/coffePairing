@@ -8,9 +8,9 @@ module.exports = {
 function femmeValid(femme) {
   return Boolean(
     femme.department_id &&
-      femme.initials &&
+      femme.name &&
       typeof femme.department_id === "number" &&
-      typeof femme.initials === "string",
+      typeof femme.name === "string",
   );
 }
 
