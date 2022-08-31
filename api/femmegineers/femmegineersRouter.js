@@ -5,7 +5,7 @@ const { validId, femmeValid } = require("./helpers");
 router.get("/", (req, res) => {
   Femme.getAllFemme()
     .then((femme_list) => {
-      res.status(200).json({ femme_list });
+      res.status(200).json({ total: femme_list.length,femme_list });
     })
     .catch((err) => {
       res.status(500).json({
