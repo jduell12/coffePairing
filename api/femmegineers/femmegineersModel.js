@@ -19,7 +19,7 @@ function editFemme(femme_id, femme_edits) {
 }
 
 function getAllFemme() {
-  return db(TABLE_NAME);
+  return db(TABLE_NAME).orderBy('name');
 }
 
 function deleteFemme(femme_id) {
