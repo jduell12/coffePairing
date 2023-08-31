@@ -15,6 +15,19 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/active", (req, res) => {
+  Femme.getActiveFemme()
+    .then((femme_list) => {
+      res.status(200).json({ total: femme_list.length,femme_list });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err.message,
+        message: "Could not retrieve femmegineers",
+      });
+    });
+});
+
 router.post("/", (req, res) => {
   const femme = req.body;
 

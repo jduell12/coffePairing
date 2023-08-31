@@ -1,14 +1,6 @@
 const db = require("../../db/dbConfig");
 const TABLE_NAME = "femmegineers";
 
-module.exports = {
-  addFemme,
-  editFemme,
-  getAllFemme,
-  deleteFemme,
-  getFemmeBy,
-};
-
 function addFemme(info) {
   return db(TABLE_NAME).insert(info, "femme_id");
 }
@@ -16,6 +8,10 @@ function addFemme(info) {
 
 function editFemme(femme_id, femme_edits) {
   return db(TABLE_NAME).where({ femme_id }).update(femme_edits);
+}
+
+function getActiveFemme() {
+  return db(TABLE_NAME).where({active: true}).orderBy('name');
 }
 
 function getAllFemme() {
@@ -41,3 +37,12 @@ async function getFemmeBy(filterName, filterValue) {
       return false;
   }
 }
+
+module.exports = {
+  addFemme,
+  editFemme,
+  getActiveFemme,
+  getAllFemme,
+  deleteFemme,
+  getFemmeBy,
+};
