@@ -1,14 +1,6 @@
 const db = require("../../db/dbConfig");
 const TABLE_NAME = "pairings";
 
-module.exports = {
-  addPairing,
-  editPairing,
-  deletePairing,
-  getAllPairings,
-  getPairingBy,
-};
-
 function addPairing(info) {
   return db(TABLE_NAME).insert(info, "pair_id");
 }
@@ -19,6 +11,10 @@ function editPairing(pair_id, pairEdits) {
 
 function deletePairing(pair_id) {
   return db(TABLE_NAME).del().where({ pair_id });
+}
+
+function deletePairingByDate({ month, year }) {
+  return db(TABLE_NAME).del().where({ month, year });
 }
 
 function getAllPairings() {
@@ -46,3 +42,13 @@ function getPairingBy(filterName, filterValue) {
       return False;
   }
 }
+
+
+module.exports = {
+  addPairing,
+  editPairing,
+  deletePairing,
+  deletePairingByDate,
+  getAllPairings,
+  getPairingBy,
+};
